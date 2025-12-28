@@ -1,0 +1,70 @@
+[debug] [2025-12-28T05:01:17.507Z] ----------------------------------------------------------------------
+[debug] [2025-12-28T05:01:17.513Z] Command:       /usr/local/bin/node /usr/local/bin/firebase init
+[debug] [2025-12-28T05:01:17.514Z] CLI Version:   15.1.0
+[debug] [2025-12-28T05:01:17.514Z] Platform:      darwin
+[debug] [2025-12-28T05:01:17.514Z] Node Version:  v22.14.0
+[debug] [2025-12-28T05:01:17.514Z] Time:          Sun Dec 28 2025 10:31:17 GMT+0530 (India Standard Time)
+[debug] [2025-12-28T05:01:17.514Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-12-28T05:01:17.515Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/debayan/WebstormProjects/debashisdutta
+
+[debug] [2025-12-28T05:01:18.924Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2025-12-28T05:01:18.925Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[debug] [2025-12-28T05:02:14.571Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-12-28T05:02:14.572Z] > authorizing via signed-in user (debayan04dutta@gmail.com)
+[debug] [2025-12-28T05:02:14.574Z] Checked if tokens are valid: false, expires at: 1762063364078
+[debug] [2025-12-28T05:02:14.574Z] Checked if tokens are valid: false, expires at: 1762063364078
+[debug] [2025-12-28T05:02:14.574Z] > refreshing access token with scopes: []
+[debug] [2025-12-28T05:02:14.577Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-12-28T05:02:14.577Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-12-28T05:02:14.822Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-12-28T05:02:14.822Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-12-28T05:02:14.837Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2025-12-28T05:02:15.851Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2025-12-28T05:02:15.851Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] 
+=== Hosting Setup
+[debug] [2025-12-28T05:02:19.975Z] Checked if tokens are valid: true, expires at: 1766901733822
+[debug] [2025-12-28T05:02:19.975Z] Checked if tokens are valid: true, expires at: 1766901733822
+[debug] [2025-12-28T05:02:19.975Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/debashisdutta [none]
+[debug] [2025-12-28T05:02:20.663Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/debashisdutta 200
+[debug] [2025-12-28T05:02:20.664Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/debashisdutta {"projectId":"debashisdutta","projectNumber":"875676087344","displayName":"debashisdutta","name":"projects/debashisdutta","resources":{"hostingSite":"debashisdutta"},"state":"ACTIVE","etag":"1_4ba587ae-4f89-4230-a6a6-b5dfd67c746e"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[info] 
+[info] i  Didn't detect a .git folder. Assuming /Users/debayan/WebstormProjects/debashisdutta is the project root. 
+[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=288677307&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+[info] 
+[info] Waiting for authentication...
+[debug] [2025-12-28T05:02:35.313Z] >>> [apiv2][query] POST https://github.com/login/oauth/access_token [none]
+[debug] [2025-12-28T05:02:35.314Z] >>> [apiv2][body] POST https://github.com/login/oauth/access_token [stream]
+[debug] [2025-12-28T05:02:35.818Z] <<< [apiv2][status] POST https://github.com/login/oauth/access_token 200
+[debug] [2025-12-28T05:02:35.818Z] <<< [apiv2][body] POST https://github.com/login/oauth/access_token {"access_token":"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","token_type":"bearer","scope":"read:user,repo"}
+[debug] [2025-12-28T05:02:35.823Z] >>> [apiv2][query] GET https://api.github.com/user [none]
+[debug] [2025-12-28T05:02:36.431Z] <<< [apiv2][status] GET https://api.github.com/user 200
+[debug] [2025-12-28T05:02:36.432Z] <<< [apiv2][body] GET https://api.github.com/user {"login":"debayan91","id":194279742,"node_id":"U_kgDOC5R5Pg","avatar_url":"https://avatars.githubusercontent.com/u/194279742?v=4","gravatar_id":"","url":"https://api.github.com/users/debayan91","html_url":"https://github.com/debayan91","followers_url":"https://api.github.com/users/debayan91/followers","following_url":"https://api.github.com/users/debayan91/following{/other_user}","gists_url":"https://api.github.com/users/debayan91/gists{/gist_id}","starred_url":"https://api.github.com/users/debayan91/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/debayan91/subscriptions","organizations_url":"https://api.github.com/users/debayan91/orgs","repos_url":"https://api.github.com/users/debayan91/repos","events_url":"https://api.github.com/users/debayan91/events{/privacy}","received_events_url":"https://api.github.com/users/debayan91/received_events","type":"User","user_view_type":"private","site_admin":false,"name":"Debayan Dutta","company":null,"blog":"","location":"India","email":"debayan.web@gmail.com","hireable":true,"bio":"Undergraduate researcher building advanced methods for Computer Vision. I'm also a full-stack developer and a Computer Science student at VIT Vellore. ","twitter_username":null,"notification_email":"debayan.web@gmail.com","public_repos":9,"public_gists":0,"followers":0,"following":1,"created_at":"2025-01-08T17:57:49Z","updated_at":"2025-12-09T15:38:56Z","private_gists":0,"total_private_repos":10,"owned_private_repos":10,"disk_usage":345449,"collaborators":0,"two_factor_authentication":true,"plan":{"name":"pro","space":976562499,"collaborators":0,"private_repos":9999}}
+[info] 
+[info] ✔  Success! Logged into GitHub as debayan91 
+[info] 

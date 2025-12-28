@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Wellness: Computer Eye Health</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Roboto Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Roboto', 'sans-serif'],
+                        display: ['Roboto', 'sans-serif'],
+                    },
+                    fontWeight: {
+                        thin: '100',
+                        light: '300',
+                        normal: '400',
+                        medium: '500',
+                        bold: '700',
+                        black: '900',
+                    },
+                    colors: {
+                        background: '#ffffff',
+                        surface: '#f8fafc',
+                        surfaceHighlight: '#f1f5f9',
+                        // Updated to strict Blue palette
+                        primary: '#0284c7',    // Sky 600
+                        primaryGlow: '#38BDF8', // Sky 400
+                        accent: '#1d4ed8',     // Blue 700 (Replaces Purple/Indigo)
+                        accentGlow: '#60a5fa', // Blue 400
+                        text: '#0f172a',       // Slate 900
+                        muted: '#64748b',      // Slate 500
+                    },
+                    animation: {
+                        'blob': 'blob 10s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: 0, transform: 'translateY(40px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #0f172a;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Modern Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #ffffff;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #cbd5e1;
+        }
+
+        /* Glassmorphism Classes */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .glass-card {
+            background: #ffffff;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(2, 132, 199, 0.08);
+        }
+
+        /* Typography - Thick Headings Restored */
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700; /* Bold */
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #0284c7 0%, #1d4ed8 100%); /* Sky to Blue */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Animation Utilities */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 100ms; }
+        .stagger-2 { transition-delay: 200ms; }
+        .stagger-3 { transition-delay: 300ms; }
+        .stagger-4 { transition-delay: 400ms; }
+
+        /* Button Shimmer */
+        .btn-shimmer {
+            background: linear-gradient(110deg, #0284c7 8%, #38BDF8 18%, #0284c7 33%);
+            background-size: 200% 100%;
+            animation: shimmer 5s linear infinite;
+        }
+
+        @media (max-width: 768px) {
+            .glass-card:active {
+                transform: scale(0.98);
+            }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-primary/20 selection:text-primary font-light">
+
+<!-- Background Ambient Effects - All Blue tones -->
+<div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-sky-500/5 rounded-full mix-blend-multiply filter blur-[100px] animate-blob opacity-40"></div>
+    <div class="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-blue-600/5 rounded-full mix-blend-multiply filter blur-[100px] animate-blob animation-delay-2000 opacity-40"></div>
+    <div class="absolute bottom-[-10%] left-[20%] w-[600px] h-[600px] bg-sky-200/10 rounded-full mix-blend-multiply filter blur-[120px] animate-blob animation-delay-4000 opacity-40"></div>
+</div>
+
+<!-- Navigation -->
+<nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 md:h-20">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-primary/5 rounded-lg">
+                    <i data-lucide="eye" class="text-primary w-6 h-6 stroke-[2]"></i>
+                </div>
+                <span class="font-display font-bold text-lg md:text-xl tracking-tight text-text">Ocular<span class="text-primary">Health</span></span>
+            </div>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#symptoms" class="text-sm font-medium text-muted hover:text-primary transition-colors">Symptoms</a>
+                <a href="#risk-factors" class="text-sm font-medium text-muted hover:text-primary transition-colors">High Risk</a>
+                <a href="#prevention" class="text-sm font-medium text-muted hover:text-primary transition-colors">Protocol</a>
+                <a href="#tool" class="px-5 py-2.5 rounded-full bg-slate-50 hover:bg-primary/5 text-sm font-medium transition-all group flex items-center gap-2 text-text shadow-sm hover:shadow-md">
+                    <span>20-20-20 Tool</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform stroke-[2]"></i>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button aria-label="Open menu" class="p-2 text-muted hover:text-primary" onclick="toggleMobileMenu()">
+                    <i data-lucide="menu" class="w-6 h-6 stroke-[2]"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-b border-slate-50 absolute w-full transition-all duration-300 ease-in-out opacity-0 -translate-y-4 shadow-lg">
+        <div class="px-4 pt-2 pb-6 space-y-2">
+            <a href="#symptoms" onclick="toggleMobileMenu()" class="block px-3 py-4 rounded-md text-base font-medium text-muted hover:text-primary hover:bg-slate-50">Symptoms</a>
+            <a href="#risk-factors" onclick="toggleMobileMenu()" class="block px-3 py-4 rounded-md text-base font-medium text-muted hover:text-primary hover:bg-slate-50">High Risk Groups</a>
+            <a href="#prevention" onclick="toggleMobileMenu()" class="block px-3 py-4 rounded-md text-base font-medium text-muted hover:text-primary hover:bg-slate-50">Prevention Protocol</a>
+            <a href="#tool" onclick="toggleMobileMenu()" class="block px-3 py-4 rounded-md text-base font-bold text-primary bg-primary/5 mt-4 text-center">Launch Tool</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div class="max-w-4xl mx-auto text-center">
+            <!-- Expert Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm mb-8 animate-slide-up cursor-pointer hover:shadow-md transition-all" onclick="document.getElementById('expert-bio').scrollIntoView({behavior: 'smooth'})">
+                <i data-lucide="award" class="w-4 h-4 text-primary stroke-[2]"></i>
+                <span class="text-xs md:text-sm font-medium text-text tracking-wide">Expert Content by Dr. Debashis Dutta</span>
+            </div>
+
+            <h1 class="text-4xl md:text-7xl lg:text-8xl font-black tracking-tight mb-8 leading-[1.1] text-text animate-slide-up" style="animation-delay: 100ms;">
+                Vision Care for the <br>
+                <span class="gradient-text">Digital Era</span>
+            </h1>
+
+            <p class="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-muted font-light leading-relaxed animate-slide-up px-4" style="animation-delay: 200ms;">
+                Prevent Digital Eye Strain (CVS) with science-backed protocols. Reduce headaches, fatigue, and blurriness without compromising your productivity.
+            </p>
+
+            <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4 animate-slide-up px-6" style="animation-delay: 300ms;">
+                <a href="#tool" class="px-8 py-4 rounded-full btn-shimmer text-white font-bold text-lg shadow-lg shadow-sky-200/50 hover:scale-105 active:scale-95 transition-transform duration-200">
+                    Start Therapy Tool
+                </a>
+                <a href="#risk-factors" class="px-8 py-4 rounded-full bg-white hover:bg-slate-50 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-text font-bold shadow-md hover:shadow-lg">
+                    View Risk Factors
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50 hidden md:block text-muted">
+        <i data-lucide="chevron-down" class="w-6 h-6 stroke-[2]"></i>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-12 bg-slate-50/50 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            <div class="text-center reveal-on-scroll">
+                <div class="text-3xl md:text-5xl font-bold text-text mb-2 font-display">66%</div>
+                <div class="text-xs md:text-sm text-muted uppercase tracking-wider font-medium">Less Blinking</div>
+            </div>
+            <div class="text-center reveal-on-scroll stagger-1">
+                <div class="text-3xl md:text-5xl font-bold text-primary mb-2 font-display">20<span class="text-xl">ft</span></div>
+                <div class="text-xs md:text-sm text-muted uppercase tracking-wider font-medium">Focus Distance</div>
+            </div>
+            <div class="text-center reveal-on-scroll stagger-2">
+                <div class="text-3xl md:text-5xl font-bold text-text mb-2 font-display">25<span class="text-xl">in</span></div>
+                <div class="text-xs md:text-sm text-muted uppercase tracking-wider font-medium">Monitor Gap</div>
+            </div>
+            <div class="text-center reveal-on-scroll stagger-3">
+                <div class="text-3xl md:text-5xl font-bold text-accent mb-2 font-display">15&deg;</div>
+                <div class="text-xs md:text-sm text-muted uppercase tracking-wider font-medium">View Angle</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Symptoms Grid -->
+<section id="symptoms" class="py-24 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row gap-12 lg:gap-20">
+            <!-- Sticky Header -->
+            <div class="md:w-1/3">
+                <div class="sticky top-32 reveal-on-scroll">
+                    <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Diagnosis</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight text-text">Recognizing <br> The Signals</h2>
+                    <p class="text-muted text-lg font-light leading-relaxed mb-8">
+                        Symptoms often manifest after just two hours of continuous screen use. Early detection prevents chronic issues.
+                    </p>
+                    <div class="p-6 rounded-2xl bg-sky-50/50">
+                        <div class="flex items-start gap-4">
+                            <i data-lucide="info" class="w-6 h-6 text-primary mt-1 flex-shrink-0 stroke-[2]"></i>
+                            <p class="text-sm text-slate-600 font-medium">If these symptoms persist even after using the strategies below, please schedule a comprehensive exam.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cards Column -->
+            <div class="md:w-2/3 space-y-6">
+                <!-- Ocular Card -->
+                <div class="glass-card p-6 md:p-8 rounded-3xl reveal-on-scroll stagger-1">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 bg-sky-50 rounded-2xl text-primary">
+                            <i data-lucide="eye-off" class="w-8 h-8 stroke-[2]"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-text">Ocular Distress</h3>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                            <span class="block text-text font-bold mb-1">Dryness & Grittiness</span>
+                            <span class="text-sm text-muted font-light">Rapid tear evaporation due to lack of blinking.</span>
+                        </div>
+                        <div class="p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                            <span class="block text-text font-bold mb-1">Photophobia</span>
+                            <span class="text-sm text-muted font-light">Increased sensitivity to ambient and screen light.</span>
+                        </div>
+                        <div class="p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                            <span class="block text-text font-bold mb-1">Blurred Vision</span>
+                            <span class="text-sm text-muted font-light">Inability to lock focus on distant objects.</span>
+                        </div>
+                        <div class="p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                            <span class="block text-text font-bold mb-1">Redness</span>
+                            <span class="text-sm text-muted font-light">Visible inflammation of the sclera.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Physical Card - CHANGED Indigo to Blue/Sky -->
+                <div class="glass-card p-6 md:p-8 rounded-3xl reveal-on-scroll stagger-2">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 bg-blue-50 rounded-2xl text-blue-600">
+                            <i data-lucide="activity" class="w-8 h-8 stroke-[2]"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-text">Musculoskeletal</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors">
+                            <i data-lucide="check" class="w-5 h-5 text-blue-600 stroke-[2]"></i>
+                            <span class="text-muted font-light"><strong>Tension Headaches:</strong> Concentrated in temples/forehead.</span>
+                        </li>
+                        <li class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors">
+                            <i data-lucide="check" class="w-5 h-5 text-blue-600 stroke-[2]"></i>
+                            <span class="text-muted font-light"><strong>Neck Stiffness:</strong> "Tech neck" from forward head posture.</span>
+                        </li>
+                        <li class="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors">
+                            <i data-lucide="check" class="w-5 h-5 text-blue-600 stroke-[2]"></i>
+                            <span class="text-muted font-light"><strong>General Fatigue:</strong> Systemic tiredness post-work.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Risk Factors -->
+<section id="risk-factors" class="py-24 bg-slate-50/30 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
+            <span class="text-accent font-bold tracking-wider uppercase text-sm mb-2 block">Vulnerable Groups</span>
+            <h2 class="text-4xl font-bold mb-4 text-text">Specific Risk Factors</h2>
+            <p class="text-muted font-light">Certain activities and conditions require specialized care strategies.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Contact Lenses - CHANGED Purple to Blue (Accent) -->
+            <div class="glass-card p-8 rounded-3xl reveal-on-scroll">
+                <div class="flex items-start gap-4 mb-6">
+                    <div class="p-3 bg-blue-50 rounded-2xl text-accent">
+                        <i data-lucide="glasses" class="w-8 h-8 stroke-[2]"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-text">Contact Lens Wearers</h3>
+                        <p class="text-sm text-accent font-medium">High Risk Category</p>
+                    </div>
+                </div>
+                <p class="text-muted mb-4 font-light leading-relaxed">
+                    Contact lenses can act as a sponge, drying out significantly faster during screen use. Old "extended wear" habits can be damaging.
+                </p>
+                <ul class="space-y-3">
+                    <li class="flex items-center gap-3 text-sm text-muted font-light">
+                        <i data-lucide="shield-alert" class="w-4 h-4 text-accent stroke-[2]"></i>
+                        Switch to glasses during long work sessions.
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-muted font-light">
+                        <i data-lucide="shield-alert" class="w-4 h-4 text-accent stroke-[2]"></i>
+                        Never sleep in contacts, even if labeled "extended wear".
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-muted font-light">
+                        <i data-lucide="shield-alert" class="w-4 h-4 text-accent stroke-[2]"></i>
+                        Consider dedicated "Computer Glasses" tuned for 20-26 inch focus.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- VR & Gaming - CHANGED Green to Cyan/Sky -->
+            <div class="glass-card p-8 rounded-3xl reveal-on-scroll stagger-1">
+                <div class="flex items-start gap-4 mb-6">
+                    <div class="p-3 bg-cyan-50 rounded-2xl text-cyan-600">
+                        <i data-lucide="gamepad-2" class="w-8 h-8 stroke-[2]"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-text">Gamers & VR Users</h3>
+                        <p class="text-sm text-cyan-600 font-medium">Intense Focus Category</p>
+                    </div>
+                </div>
+                <p class="text-muted mb-4 font-light leading-relaxed">
+                    VR creates a "vergence-accommodation conflict" where eyes fight to focus on a screen that is close, while the image appears far.
+                </p>
+                <ul class="space-y-3">
+                    <li class="flex items-center gap-3 text-sm text-muted font-light">
+                        <i data-lucide="shield-alert" class="w-4 h-4 text-cyan-600 stroke-[2]"></i>
+                        Take breaks more frequently than standard monitor users.
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-muted font-light">
+                        <i data-lucide="shield-alert" class="w-4 h-4 text-cyan-600 stroke-[2]"></i>
+                        If you feel dizzy/nauseous, check depth perception with a doctor.
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-muted font-light">
+                        <i data-lucide="shield-alert" class="w-4 h-4 text-cyan-600 stroke-[2]"></i>
+                        Ensure VR IPD (Interpupillary Distance) is correctly calibrated.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Timer Tool -->
+<section id="tool" class="py-16 md:py-24 relative overflow-hidden">
+    <div class="absolute inset-0 bg-slate-50/50 z-0"></div>
+    <div class="max-w-7xl mx-auto px-4 relative z-10">
+        <div class="glass-card max-w-5xl mx-auto rounded-3xl md:rounded-[3rem] p-6 md:p-16 bg-white overflow-hidden relative">
+            <!-- Decorative Glows - Blue -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px]"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 bg-accent/5 rounded-full blur-[80px]"></div>
+
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2 text-center lg:text-left">
+                    <div class="inline-block px-3 py-1 rounded-full bg-primary/5 text-primary text-xs font-bold mb-4">INTERACTIVE TOOL</div>
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6 text-text">The 20-20-20 Rule</h2>
+                    <p class="text-base md:text-lg text-muted font-light mb-8 leading-relaxed">
+                        The gold standard for eye strain prevention. We've built this timer to help you build the habit.
+                    </p>
+                    <div class="flex flex-col gap-4 text-left">
+                        <div class="flex items-center gap-4 bg-slate-50/50 p-3 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold flex-shrink-0">1</div>
+                            <span class="text-muted text-sm md:text-base font-light">Every <strong>20 minutes</strong> of screen time</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-slate-50/50 p-3 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold flex-shrink-0">2</div>
+                            <span class="text-muted text-sm md:text-base font-light">Look at something <strong>20 feet</strong> away</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-slate-50/50 p-3 rounded-xl">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold flex-shrink-0">3</div>
+                            <span class="text-muted text-sm md:text-base font-light">Hold focus for <strong>20 seconds</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2 w-full flex flex-col items-center">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 mb-8">
+                        <!-- SVG Timer with viewbox for perfect scaling -->
+                        <svg class="transform -rotate-90 w-full h-full drop-shadow-lg" viewBox="0 0 100 100">
+                            <!-- Background Circle -->
+                            <circle cx="50" cy="50" r="45" stroke="rgba(0,0,0,0.03)" stroke-width="6" fill="transparent" />
+                            <!-- Progress Circle -->
+                            <circle id="progress-ring" cx="50" cy="50" r="45" stroke="#0284c7" stroke-width="6" fill="transparent" stroke-linecap="round" class="transition-all duration-1000 ease-linear shadow-lg" stroke-dasharray="282.743" stroke-dashoffset="0" />
+                        </svg>
+
+                        <!-- Center Text -->
+                        <div class="absolute inset-0 flex items-center justify-center flex-col z-10">
+                            <span id="timer-display" class="text-5xl md:text-7xl font-bold tracking-tighter tabular-nums text-text">20:00</span>
+                            <span id="timer-status" class="text-sm font-bold tracking-widest text-primary mt-2 uppercase animate-pulse">Ready</span>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 w-full max-w-sm">
+                        <button id="start-btn" onclick="toggleTimer()" class="flex-1 btn-shimmer text-white font-bold py-4 px-8 rounded-2xl hover:brightness-110 transition-all active:scale-95 shadow-lg shadow-sky-200/50">Start Timer</button>
+                        <button onclick="resetTimer()" class="px-6 py-4 rounded-2xl bg-slate-50 hover:bg-slate-100 transition-all text-muted hover:text-text" aria-label="Reset Timer">
+                            <i data-lucide="rotate-ccw" class="w-6 h-6 stroke-[2]"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Prevention Checklist -->
+<section id="prevention" class="py-24 relative z-10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center reveal-on-scroll text-text">Prevention Protocol</h2>
+
+        <div class="space-y-4">
+            <!-- Accordion Item 1 -->
+            <div class="group reveal-on-scroll">
+                <div class="glass-card p-1 rounded-2xl transition-all duration-300">
+                    <div class="p-6 md:p-8 flex gap-6 items-start">
+                        <div class="hidden md:flex flex-col items-center gap-1">
+                            <div class="w-px h-full bg-gradient-to-b from-transparent via-primary/50 to-transparent h-12"></div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl md:text-2xl font-bold mb-3 text-text group-hover:text-primary transition-colors">1. Monitor Position</h3>
+                            <p class="text-muted font-light leading-relaxed">
+                                Distance is key. Keep the screen <strong>arm's length (20-28 inches)</strong> away. Crucially, position the top of the monitor at eyebrow level so you look slightly down (10-15&deg;). This lowers the eyelid, reducing tear evaporation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion Item 2 - Accent/Blue -->
+            <div class="group reveal-on-scroll stagger-1">
+                <div class="glass-card p-1 rounded-2xl transition-all duration-300">
+                    <div class="p-6 md:p-8 flex gap-6 items-start">
+                        <div class="hidden md:flex flex-col items-center gap-1">
+                            <div class="w-px h-full bg-gradient-to-b from-transparent via-accent/50 to-transparent h-12"></div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl md:text-2xl font-bold mb-3 text-text group-hover:text-accent transition-colors">2. Environment Lighting</h3>
+                            <p class="text-muted font-light leading-relaxed">
+                                Eliminate glare. Never place a screen directly in front of an uncovered window (backlighting) or directly opposite one (reflection). Use bias lighting (LED strip behind monitor) to equalize brightness.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion Item 3 - CHANGED Purple to Blue -->
+            <div class="group reveal-on-scroll stagger-2">
+                <div class="glass-card p-1 rounded-2xl transition-all duration-300">
+                    <div class="p-6 md:p-8 flex gap-6 items-start">
+                        <div class="hidden md:flex flex-col items-center gap-1">
+                            <div class="w-px h-full bg-gradient-to-b from-transparent via-blue-600/50 to-transparent h-12"></div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl md:text-2xl font-bold mb-3 text-text group-hover:text-blue-600 transition-colors">3. Lubrication & Blinking</h3>
+                            <p class="text-muted font-light leading-relaxed">
+                                Blinking resets the eye's tear film. Force yourself to blink fully. If dryness persists, use artificial tears (preservative-free) to maintain moisture. Use a room humidifier if the air is dry.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion Item 4 - CHANGED Pink to Cyan -->
+            <div class="group reveal-on-scroll stagger-3">
+                <div class="glass-card p-1 rounded-2xl transition-all duration-300">
+                    <div class="p-6 md:p-8 flex gap-6 items-start">
+                        <div class="hidden md:flex flex-col items-center gap-1">
+                            <div class="w-px h-full bg-gradient-to-b from-transparent via-cyan-500/50 to-transparent h-12"></div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl md:text-2xl font-bold mb-3 text-text group-hover:text-cyan-600 transition-colors">4. Display Calibration</h3>
+                            <p class="text-muted font-light leading-relaxed">
+                                Use "Night Light" or f.lux after sunset to reduce blue light. Ensure text size is large enough to read from 3 feet away. Contrast should be high (60-70%), but brightness should match your room.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Expert Bio Section -->
+<section id="expert-bio" class="py-20 relative z-10 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="glass-card p-8 md:p-12 rounded-3xl relative overflow-hidden">
+            <!-- Decorative BG -->
+            <div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[100px]"></div>
+
+            <div class="flex flex-col md:flex-row gap-10 items-center">
+                <!-- Avatar Placeholder / Initials -->
+                <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-xl shadow-primary/20 shrink-0">
+                    <span class="text-4xl md:text-5xl font-bold text-white font-display">DD</span>
+                </div>
+
+                <div class="flex-1 text-center md:text-left">
+                    <h2 class="text-3xl font-bold mb-2 text-text">Dr. Debashis Dutta</h2>
+                    <p class="text-primary font-bold mb-6 uppercase tracking-wider text-sm">MBBS, MS (Ophthalmology)</p>
+
+                    <p class="text-muted font-light leading-relaxed mb-6">
+                        A renowned Consultant in Cataract and Cornea Services at <strong>Disha Eye Hospitals</strong> (since 2004). With over two decades of experience, Dr. Dutta has served both rural and urban populations, performing over 2,000 surgeries annually.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-muted font-light">
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="award" class="w-5 h-5 text-accent shrink-0 mt-0.5 stroke-[2]"></i>
+                            <span>Winner of the <strong>K.R. Dutta Award</strong> & Best Poster Award at OSWB.</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="video" class="w-5 h-5 text-accent shrink-0 mt-0.5 stroke-[2]"></i>
+                            <span>ASCRS Film Festival Runner-up (New Orleans, 2016).</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="graduation-cap" class="w-5 h-5 text-accent shrink-0 mt-0.5 stroke-[2]"></i>
+                            <span>Fellowships at <strong>Sankara Nethralaya</strong> (Retina) & <strong>LV Prasad Eye Institute</strong>.</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="globe" class="w-5 h-5 text-accent shrink-0 mt-0.5 stroke-[2]"></i>
+                            <span>Hands-on training at <strong>ORBIS International</strong>.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-white border-t border-slate-100 pt-20 pb-10 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
+            <div class="max-w-sm">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="p-2 bg-primary/5 rounded-lg">
+                        <i data-lucide="eye" class="text-primary w-6 h-6 stroke-[2]"></i>
+                    </div>
+                    <span class="font-display font-bold text-2xl text-text">OcularHealth</span>
+                </div>
+                <p class="text-muted font-light leading-relaxed mb-6">
+                    Empowering digital workers with the knowledge to protect their most valuable sense.
+                </p>
+            </div>
+
+            <div class="flex flex-col gap-4">
+                <h4 class="font-bold text-text text-lg">Contact Information</h4>
+                <p class="text-sm text-muted font-light">For consultations and appointments:</p>
+                <div class="flex items-center gap-3 text-muted font-light">
+                    <i data-lucide="mail" class="w-4 h-4 stroke-[2]"></i>
+                    <a href="mailto:debashis71@gmail.com" class="hover:text-primary transition-colors">debashis71@gmail.com</a>
+                </div>
+                <div class="flex items-center gap-3 text-muted font-light">
+                    <i data-lucide="map-pin" class="w-4 h-4 stroke-[2]"></i>
+                    <span>Disha Eye Hospitals / Kolkata</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-t border-slate-50 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-muted font-light">
+            <p>&copy; 2024 Digital Wellness Initiative.</p>
+            <div class="flex gap-6">
+                <span>Sources: AOA, Cleveland Clinic</span>
+                <span class="hidden md:inline">|</span>
+                <p>Disclaimer: Not a substitute for professional medical advice.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Logic -->
+<script>
+    // Icons
+    lucide.createIcons();
+
+    // Intersection Observer for Scroll Animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+    document.querySelectorAll('.reveal-on-scroll').forEach((el) => observer.observe(el));
+
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+        if (!menu.classList.contains('hidden')) {
+            setTimeout(() => {
+                menu.classList.remove('opacity-0', '-translate-y-4');
+            }, 10);
+        } else {
+            menu.classList.add('opacity-0', '-translate-y-4');
+        }
+    }
+
+    // Timer Logic
+    let timerInterval;
+    let isRunning = false;
+    let timeLeft = 20 * 60; // 20 mins
+    let mode = 'work'; // 'work' or 'rest'
+    const circle = document.getElementById('progress-ring');
+
+    // Geometry for SVG (r=45)
+    const radius = 45;
+    const circumference = 2 * Math.PI * radius; // Approx 282.743
+
+    circle.style.strokeDasharray = `${circumference} ${circumference}`;
+    circle.style.strokeDashoffset = 0;
+
+    function setProgress(percent) {
+        const offset = circumference - percent / 100 * circumference;
+        circle.style.strokeDashoffset = offset;
+    }
+
+    function updateDisplay() {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        document.getElementById('timer-display').innerText =
+            `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+        // Calculate progress
+        const totalTime = mode === 'work' ? 20 * 60 : 20;
+        const elapsed = totalTime - timeLeft;
+        const percentage = (elapsed / totalTime) * 100;
+
+        // For countdown visual, we want the stroke to disappear
+        // So if 100% time has passed, offset should be max
+        // setProgress(100 - percentage) would make it empty out
+        setProgress(100 - percentage);
+    }
+
+    function toggleTimer() {
+        const btn = document.getElementById('start-btn');
+        const status = document.getElementById('timer-status');
+
+        if (isRunning) {
+            clearInterval(timerInterval);
+            btn.innerText = "Resume Session";
+            btn.classList.remove('btn-shimmer'); // Remove shine when paused
+            btn.classList.add('bg-white', 'text-text', 'border', 'border-slate-200');
+            btn.classList.remove('text-white');
+            status.innerText = "Paused";
+            status.classList.remove('animate-pulse');
+        } else {
+            btn.innerText = "Pause Timer";
+            btn.classList.remove('bg-white', 'text-text', 'border', 'border-slate-200');
+            btn.classList.add('btn-shimmer', 'text-white'); // Add shine when running
+
+            if(mode === 'work') {
+                status.innerText = "Focusing...";
+                status.style.color = "#0284c7"; // Primary
+            } else {
+                status.innerText = "REST YOUR EYES";
+                status.style.color = "#1d4ed8"; // Accent (Blue)
+            }
+            status.classList.add('animate-pulse');
+
+            timerInterval = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    updateDisplay();
+                } else {
+                    switchMode();
+                }
+            }, 1000);
+        }
+        isRunning = !isRunning;
+    }
+
+    function switchMode() {
+        const status = document.getElementById('timer-status');
+        const ring = document.getElementById('progress-ring');
+
+        if (mode === 'work') {
+            mode = 'rest';
+            timeLeft = 20; // 20 seconds
+            status.innerText = "LOOK AWAY NOW (20 FT)";
+            status.style.color = "#1d4ed8"; // Accent (Blue)
+            ring.style.stroke = "#1d4ed8";
+            // In a real app, play sound here
+        } else {
+            mode = 'work';
+            timeLeft = 20 * 60; // 20 minutes
+            status.innerText = "Back to Work";
+            status.style.color = "#0284c7"; // Sky
+            ring.style.stroke = "#0284c7";
+        }
+        updateDisplay();
+    }
+
+    function resetTimer() {
+        clearInterval(timerInterval);
+        isRunning = false;
+        mode = 'work';
+        timeLeft = 20 * 60;
+        const btn = document.getElementById('start-btn');
+        btn.innerText = "Start Timer";
+        // Reset button classes
+        btn.className = "flex-1 btn-shimmer text-white font-bold py-4 px-8 rounded-2xl hover:brightness-110 transition-all active:scale-95 shadow-lg shadow-sky-200/50";
+
+        document.getElementById('timer-status').innerText = "Ready";
+        document.getElementById('progress-ring').style.strokeDashoffset = 0;
+        document.getElementById('progress-ring').style.stroke = "#0284c7";
+        updateDisplay();
+    }
+</script>
+</body>
+</html>
