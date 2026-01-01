@@ -1,32 +1,39 @@
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
 const operations = [
     {
+        slug: "cataract-surgery",
         title: "Cataract Surgery",
         subtitle: "MICS (Micro-Incision Cataract Surgery)",
         desc: "A safe, minimally invasive procedure replacing the cloudy natural lens with an artificial IOL."
     },
     {
+        slug: "lasik-smile",
         title: "LASIK & SMILE",
         subtitle: "Refractive Vision Correction",
         desc: "Laser procedures to reshape the cornea and correct myopia, hyperopia, and astigmatism."
     },
     {
+        slug: "glaucoma-therapy",
         title: "Glaucoma Therapy",
         subtitle: "MIGS & Trabeculectomy",
         desc: "Advanced medical and surgical interventions to lower eye pressure and prevent optic nerve damage."
     },
     {
+        slug: "corneal-transplant",
         title: "Corneal Transplant",
         subtitle: "Keratoplasty (PK, DALK, DSAEK)",
         desc: "Replacing damaged corneal tissue with healthy donor tissue to restore vision."
     },
     {
+        slug: "oculoplasty",
         title: "Oculoplasty",
         subtitle: "Eyelid & Orbital Surgery",
         desc: "Cosmetic and reconstructive surgeries for eyelids, tear ducts, and the eye socket."
     },
     {
+        slug: "retina-services",
         title: "Retina Services",
         subtitle: "Medical & Surgical Retina",
         desc: "Management of diabetic retinopathy, retinal detachment, and macular degeneration."
@@ -43,7 +50,11 @@ const EyeOperations = () => {
 
             <div className="grid grid-cols-1 gap-px bg-gray-200 border border-gray-200">
                 {operations.map((op, i) => (
-                    <div key={i} className="bg-white p-8 md:p-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 group hover:bg-gray-50 transition-colors">
+                    <Link
+                        key={i}
+                        to={`/eye-operations/${op.slug}`}
+                        className="bg-white p-8 md:p-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 group hover:bg-gray-50 transition-colors"
+                    >
                         <div className="flex-1">
                             <h2 className="text-2xl font-bold uppercase tracking-wide mb-2 group-hover:text-black transition-colors">{op.title}</h2>
                             <p className="text-xs uppercase tracking-widest font-bold text-gray-400 mb-4">{op.subtitle}</p>
@@ -52,7 +63,7 @@ const EyeOperations = () => {
                         <div className="w-12 h-12 flex items-center justify-center border border-gray-200 rounded-full group-hover:bg-black group-hover:border-black transition-all">
                             <ArrowRight size={20} className="text-gray-400 group-hover:text-white" />
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>
@@ -60,3 +71,4 @@ const EyeOperations = () => {
 };
 
 export default EyeOperations;
+
